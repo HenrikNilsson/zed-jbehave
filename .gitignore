@@ -1,0 +1,22 @@
+/target
+
+# Verified: running `cargo` from inside a workspace member (server/,
+# crates/tree-sitter-jbehave-sys/) still resolves to the workspace-root
+# /target above, not a separate one — no per-member entries needed.
+
+# Artifacts Zed generates when you `zed: install dev extension` from this
+# repo root: the compiled extension component and the checked-out + compiled
+# grammar.
+/extension.wasm
+/grammars
+
+# The .tar.gz Zed produces if you ever run `zed extension package` locally.
+*.tar.gz
+
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local, machine-specific Claude Code settings; not shared project config.
+.claude/settings.local.json

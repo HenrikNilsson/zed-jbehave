@@ -1,0 +1,38 @@
+name: ci
+
+# Day-to-day verification: formatting, lints, the server + grammar-crate
+# test suites, and the extension's wasm32-wasip2 check. Runs on every push
+# and pull request. Uses the toolchain pinned by rust-toolchain.toml
+# (`rustup show` installs it automatically).
+#
+# Release binaries are a separate concern: see release.yml (tag-triggered).
+
+"on": [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install pinned toolchain
+        run: rustup show active-toolchain
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: formatting
+        run: cargo fmt --all -- --check
+
+      - name: lints
+        run: |
+          cargo clippy -p jbehave-language-server -p tree-sitter-jbehave-sys -- -D warnings
+          cargo clippy -p zed-jbehave --target wasm32-wasip2 -- -D warnings
+
+      - name: tests
+        run: cargo test -p jbehave-language-server -p tree-sitter-jbehave-sys
+
+      - name: extension wasm check
+        run: cargo check -p zed-jbehave --target wasm32-wasip2

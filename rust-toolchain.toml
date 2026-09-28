@@ -1,0 +1,5 @@
+[toolchain]
+channel = "stable"
+# The extension crate compiles to wasm32-wasip2 (the target Zed builds dev
+# extensions with); the server crate is native.
+targets = ["wasm32-wasip2"]

@@ -1,0 +1,529 @@
+[
+  {
+    "type": "examples",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "examples_kw",
+          "named": true
+        },
+        {
+          "type": "examples_table",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "examples_table",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "table_row",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "free_text",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "free_text_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "free_text_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "given_stories",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "given_stories_kw",
+          "named": true
+        },
+        {
+          "type": "story_ref_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lifecycle",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "lifecycle_kw",
+          "named": true
+        },
+        {
+          "type": "lifecycle_section",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lifecycle_scope",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "scope_kw",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lifecycle_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "after_kw",
+          "named": true
+        },
+        {
+          "type": "before_kw",
+          "named": true
+        },
+        {
+          "type": "lifecycle_scope",
+          "named": true
+        },
+        {
+          "type": "step",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "meta",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "meta_kw",
+          "named": true
+        },
+        {
+          "type": "meta_line",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "meta_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "narrative",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "free_text",
+          "named": true
+        },
+        {
+          "type": "narrative_kw",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scenario",
+    "named": true,
+    "fields": {
+      "title": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "title",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "examples",
+          "named": true
+        },
+        {
+          "type": "meta",
+          "named": true
+        },
+        {
+          "type": "scenario_kw",
+          "named": true
+        },
+        {
+          "type": "step",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "given_stories",
+          "named": true
+        },
+        {
+          "type": "lifecycle",
+          "named": true
+        },
+        {
+          "type": "meta",
+          "named": true
+        },
+        {
+          "type": "narrative",
+          "named": true
+        },
+        {
+          "type": "scenario",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "step",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "step_continuation_line",
+          "named": true
+        },
+        {
+          "type": "step_keyword",
+          "named": true
+        },
+        {
+          "type": "step_text",
+          "named": true
+        },
+        {
+          "type": "table_row",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "step_continuation_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "continuation_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "step_keyword",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "and_kw",
+          "named": true
+        },
+        {
+          "type": "given_kw",
+          "named": true
+        },
+        {
+          "type": "then_kw",
+          "named": true
+        },
+        {
+          "type": "when_kw",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "step_text",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "step_text_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "story_ref_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "story_ref",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table_cell",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "table_cell_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table_row",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "table_cell",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tag_name",
+          "named": true
+        },
+        {
+          "type": "tag_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "after_kw",
+    "named": true
+  },
+  {
+    "type": "and_kw",
+    "named": true
+  },
+  {
+    "type": "before_kw",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
+    "type": "continuation_text",
+    "named": true
+  },
+  {
+    "type": "examples_kw",
+    "named": true
+  },
+  {
+    "type": "given_kw",
+    "named": true
+  },
+  {
+    "type": "given_stories_kw",
+    "named": true
+  },
+  {
+    "type": "lifecycle_kw",
+    "named": true
+  },
+  {
+    "type": "meta_kw",
+    "named": true
+  },
+  {
+    "type": "narrative_kw",
+    "named": true
+  },
+  {
+    "type": "parameter",
+    "named": true
+  },
+  {
+    "type": "scenario_kw",
+    "named": true
+  },
+  {
+    "type": "scope_kw",
+    "named": true
+  },
+  {
+    "type": "step_text_fragment",
+    "named": true
+  },
+  {
+    "type": "story_ref",
+    "named": true
+  },
+  {
+    "type": "table_cell_fragment",
+    "named": true
+  },
+  {
+    "type": "tag_name",
+    "named": true
+  },
+  {
+    "type": "tag_value",
+    "named": true
+  },
+  {
+    "type": "then_kw",
+    "named": true
+  },
+  {
+    "type": "when_kw",
+    "named": true
+  },
+  {
+    "type": "|",
+    "named": false
+  }
+]

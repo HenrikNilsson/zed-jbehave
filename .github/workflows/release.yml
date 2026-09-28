@@ -1,0 +1,76 @@
+name: release-server
+
+# Publishes the `jbehave-language-server` binaries that the Zed extension
+# downloads on first use (see `SERVER_REPO` / `asset_name_for` in src/lib.rs).
+# Pushing a tag like `v0.1.0` builds all platforms natively (no cross
+# toolchains) and attaches the archives to that tag's GitHub release.
+#
+# Asset names are load-bearing: the extension looks up
+# `jbehave-language-server-<os>-<arch>.tar.gz` (.zip on Windows), with the
+# binary at the archive's top level. Keep this file and `asset_name_for`
+# in sync — see server/README.md.
+
+"on":
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            os: linux
+            arch: x86_64
+            ext: tar.gz
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            os: linux
+            arch: aarch64
+            ext: tar.gz
+          - runner: macos-latest
+            target: aarch64-apple-darwin
+            os: macos
+            arch: aarch64
+            ext: tar.gz
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            os: windows
+            arch: x86_64
+            ext: zip
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: build server
+        run: cargo build --release -p jbehave-language-server --target ${{ matrix.target }}
+
+      - name: package (tar.gz)
+        if: matrix.ext == 'tar.gz'
+        shell: bash
+        run: |
+          mkdir -p dist
+          cd "target/${{ matrix.target }}/release"
+          tar czf "$GITHUB_WORKSPACE/dist/jbehave-language-server-${{ matrix.os }}-${{ matrix.arch }}.tar.gz" jbehave-language-server
+
+      - name: package (zip)
+        if: matrix.ext == 'zip'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Compress-Archive -Path "target/${{ matrix.target }}/release/jbehave-language-server.exe" -DestinationPath "dist/jbehave-language-server-${{ matrix.os }}-${{ matrix.arch }}.zip"
+
+      - name: upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

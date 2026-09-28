@@ -1,0 +1,24 @@
+id = "jbehave"
+name = "JBehave"
+description = "JBehave (.story) support: syntax highlighting, step navigation, diagnostics, and completion."
+version = "0.1.0"
+schema_version = 1
+authors = []
+repository = "https://github.com/HenrikNilsson/zed-jbehave"
+
+[grammars.jbehave]
+repository = "https://github.com/HenrikNilsson/tree-sitter-jbehave"
+rev = "4199c769ee4803217eea7b3f4ad70381b89d6564"
+
+[language_servers.jbehave-language-server]
+name = "JBehave Language Server"
+# JBehave is the language this server is *for*, but Java and Groovy are
+# attached too (the same mechanism Emmet/Tailwind use to see other languages'
+# buffers): Zed then forwards their did_open/did_change/did_save/did_close
+# events to this one shared server instance, so step definitions edited in
+# .java/.groovy files are indexed without restarting. Users can exclude them
+# per-project via the standard `language_servers` setting.
+languages = ["JBehave", "Java", "Groovy"]
+# The startup command itself comes from `language_server_command` in
+# src/lib.rs (downloads a release binary, or uses one on $PATH for local
+# dev). This table just declares the server exists.

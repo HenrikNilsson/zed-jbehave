@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Echo runnable context (checks the wiring)",
+    "command": "echo",
+    "args": ["story=$ZED_FILE scenario=$ZED_CUSTOM_NAME row=$ZED_ROW"],
+    "tags": ["jbehave-scenario"]
+  },
+  {
+    "label": "Run JBehave stories (Gradle, whole module suite)",
+    "command": "gradle",
+    "args": ["test"],
+    "tags": ["jbehave-scenario"]
+  }
+]

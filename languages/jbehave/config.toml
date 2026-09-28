@@ -1,0 +1,4 @@
+name = "JBehave"
+grammar = "jbehave"
+path_suffixes = ["story"]
+line_comments = ["!--"]

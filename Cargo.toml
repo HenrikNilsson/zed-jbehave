@@ -1,0 +1,27 @@
+[package]
+name = "zed-jbehave"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Zed extension providing JBehave (.story) language support"
+
+# Zed requires the extension crate to BE this workspace root: `zed: install
+# dev extension` runs `cargo build --target wasm32-wasip2` in the extension
+# directory, parses this manifest for `package.name`, and looks for the wasm
+# at `target/wasm32-wasip2/{debug,release}/zed_jbehave.wasm`.
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.7"
+
+[workspace]
+resolver = "2"
+members = ["crates/tree-sitter-jbehave-sys", "server"]
+
+# The extension crate (this package, wasm32-wasip2) and the native server
+# crate are kept as separate workspace members on purpose: the server pulls in
+# tokio/tower-lsp-server, which must never end up in the extension's wasm build
+# graph. `cargo build` in this workspace defaults to the root package only,
+# so Zed's plain `cargo build --target wasm32-wasip2` never touches the
+# server/sys members.

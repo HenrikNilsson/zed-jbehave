@@ -1,0 +1,28 @@
+[package]
+name = "jbehave-language-server"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "jbehave-language-server"
+path = "src/main.rs"
+
+[dependencies]
+# Community-maintained fork of tower-lsp (upstream dormant since 0.20, 2023).
+tower-lsp-server = "0.23"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std"] }
+regex = "1"
+tree-sitter = "0.25"
+tree-sitter-java = "0.23"
+tree-sitter-groovy = "0.1"
+tree-sitter-jbehave-sys = { path = "../crates/tree-sitter-jbehave-sys" }
+dashmap = "6"
+ignore = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+tokio-test = "0.4"
+futures = "0.3"
+tower = { version = "0.5", features = ["util"] }

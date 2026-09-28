@@ -1,0 +1,22 @@
+[package]
+name = "tree-sitter-jbehave-sys"
+version = "0.1.0"
+edition = "2024"
+publish = false
+build = "build.rs"
+description = "Vendored tree-sitter-jbehave grammar (C sources) with Rust bindings"
+
+[lib]
+name = "tree_sitter_jbehave_sys"
+path = "src/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[build-dependencies]
+cc = "1.1"
+
+[dev-dependencies]
+# 0.25 is the first tree-sitter crate version whose supported ABI range
+# (13..=15) includes the grammar's generated ABI 15; 0.24 caps at 14.
+tree-sitter = "0.25"
